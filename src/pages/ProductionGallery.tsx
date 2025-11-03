@@ -56,18 +56,26 @@ export const ProductionGallery = () => {
         <h2>Producción no encontrada</h2>
         <button 
           onClick={() => navigate('/')}
-            style={{
-              marginTop: '20px',
-              padding: '12px 24px',
-              backgroundColor: '#467e03',
+          style={{
+            marginTop: '20px',
+            padding: '8px 20px',
+            backgroundColor: '#467e03',
             color: 'white',
             border: 'none',
-            borderRadius: '8px',
+            borderRadius: '20px',
             cursor: 'pointer',
-            fontSize: '16px',
+            fontSize: '14px',
+            fontWeight: '500',
+            transition: 'all 0.2s',
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.backgroundColor = '#3a6802';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.backgroundColor = '#467e03';
           }}
         >
-          Volver al inicio
+          ← Volver al inicio
         </button>
       </div>
     );
@@ -85,34 +93,36 @@ export const ProductionGallery = () => {
       <div style={{
         maxWidth: '1400px',
         margin: '0 auto',
-        padding: '20px 20px 0',
+        padding: '15px 20px 0',
       }}>
         <button
           onClick={() => navigate('/')}
           style={{
-            background: 'none',
-            border: '1px solid #e3e6df',
+            background: 'white',
+            border: '1px solid #467e03',
             color: '#467e03',
-            fontSize: '15px',
+            fontSize: '14px',
             cursor: 'pointer',
-            display: 'flex',
+            display: 'inline-flex',
             alignItems: 'center',
-            gap: '8px',
+            gap: '6px',
             fontWeight: '600',
-            padding: '10px 20px',
-            borderRadius: '8px',
-            transition: 'all 0.3s',
+            padding: '6px 14px',
+            borderRadius: '20px',
+            transition: 'all 0.2s',
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = '#f0f2ed';
+            e.currentTarget.style.backgroundColor = '#467e03';
             e.currentTarget.style.borderColor = '#467e03';
+            e.currentTarget.style.color = 'white';
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = 'transparent';
-            e.currentTarget.style.borderColor = '#e3e6df';
+            e.currentTarget.style.backgroundColor = 'white';
+            e.currentTarget.style.borderColor = '#467e03';
+            e.currentTarget.style.color = '#467e03';
           }}
         >
-          ← Volver al inicio
+          ← Volver
         </button>
       </div>
 
@@ -120,14 +130,14 @@ export const ProductionGallery = () => {
       <div style={{
         maxWidth: '1400px',
         margin: '0 auto',
-        padding: '20px 20px 40px',
+        padding: '0px 20px 32px',
       }}>
-        <div style={{ marginBottom: '40px' }}>
+        <div style={{ marginBottom: '20px' }}>
           <h1 style={{
             fontSize: '36px',
             fontWeight: '800',
             color: '#1a1a18',
-            marginBottom: '12px',
+            marginBottom: '5px',
           }}>
             {production.title}
           </h1>

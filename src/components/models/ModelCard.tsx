@@ -2,7 +2,7 @@
  * Componente ModelCard - Tarjeta de modelo
  */
 
-import { Model } from '../../types/model.types';
+import type { Model } from '../../types/model.types';
 
 interface ModelCardProps {
   model: Model;

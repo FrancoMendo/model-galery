@@ -4,16 +4,16 @@
 
 export const profileConfig = {
   name: 'Magalí Matas',
-  photo: '/src/assets/images/profile.jpg', // Cambia esta ruta por tu foto
+  photo: '/src/assets/images/models/user_avatar.JPG',
   role: 'Modelo & Actriz Profesional',
   
   social: {
     instagram: {
       url: 'https://www.instagram.com/magalimatas/',
-      username: '@tu_usuario',
+      username: '@magalimatas',
     },
     email: {
-      address: 'contacto@tumail.com',
+      address: 'magalimatas22@gmail.com',
       subject: 'Consulta desde Model Gallery',
     },
   },

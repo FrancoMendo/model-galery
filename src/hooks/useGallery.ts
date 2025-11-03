@@ -3,7 +3,7 @@
  */
 
 import { useState, useEffect, useCallback } from 'react';
-import { Photo } from '../types/model.types';
+import type { Photo } from '../types/model.types';
 import { GalleryLayout, SortOption } from '../types/gallery.types';
 
 interface UseGalleryOptions {

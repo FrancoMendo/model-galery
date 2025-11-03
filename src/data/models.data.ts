@@ -3,7 +3,8 @@
  * Reemplazar con llamadas a API en producción
  */
 
-import { Model, ModelCategory } from '../types/model.types';
+import type { Model } from '../types/model.types';
+import { ModelCategory } from '../types/model.types';
 
 export const mockModels: Model[] = [
   {

@@ -2,7 +2,7 @@
  * Tipos relacionados con la galería de imágenes
  */
 
-import { Photo } from './model.types';
+import type { Photo } from './model.types';
 
 export interface GalleryState {
   photos: Photo[];
@@ -16,19 +16,23 @@ export interface GalleryState {
   sortBy: SortOption;
 }
 
-export enum GalleryLayout {
-  GRID = 'grid',
-  MASONRY = 'masonry',
-  CAROUSEL = 'carousel',
-  SLIDESHOW = 'slideshow',
-}
+export const GalleryLayout = {
+  GRID: 'grid',
+  MASONRY: 'masonry',
+  CAROUSEL: 'carousel',
+  SLIDESHOW: 'slideshow',
+} as const;
 
-export enum SortOption {
-  NEWEST = 'newest',
-  OLDEST = 'oldest',
-  POPULAR = 'popular',
-  RANDOM = 'random',
-}
+export type GalleryLayout = typeof GalleryLayout[keyof typeof GalleryLayout];
+
+export const SortOption = {
+  NEWEST: 'newest',
+  OLDEST: 'oldest',
+  POPULAR: 'popular',
+  RANDOM: 'random',
+} as const;
+
+export type SortOption = typeof SortOption[keyof typeof SortOption];
 
 export interface GalleryFilters {
   category?: string;

@@ -42,16 +42,18 @@ export interface SocialMedia {
   tiktok?: string;
 }
 
-export enum ModelCategory {
-  FASHION = 'fashion',
-  COMMERCIAL = 'commercial',
-  EDITORIAL = 'editorial',
-  RUNWAY = 'runway',
-  FITNESS = 'fitness',
-  PLUS_SIZE = 'plus_size',
-  ACTOR = 'actor',
-  ACTRESS = 'actress',
-}
+export const ModelCategory = {
+  FASHION: 'fashion',
+  COMMERCIAL: 'commercial',
+  EDITORIAL: 'editorial',
+  RUNWAY: 'runway',
+  FITNESS: 'fitness',
+  PLUS_SIZE: 'plus_size',
+  ACTOR: 'actor',
+  ACTRESS: 'actress',
+} as const;
+
+export type ModelCategory = typeof ModelCategory[keyof typeof ModelCategory];
 
 export interface ModelFilters {
   category?: ModelCategory;

@@ -3,8 +3,8 @@
  */
 
 import { apiClient } from './api';
-import { Model, ModelFilters } from '../types/model.types';
-import { PaginatedResponse } from '../types';
+import type { Model, ModelFilters } from '../types/model.types';
+import type { PaginatedResponse } from '../types';
 
 /**
  * Obtiene todos los modelos con paginación y filtros opcionales

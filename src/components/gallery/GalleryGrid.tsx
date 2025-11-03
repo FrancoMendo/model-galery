@@ -2,7 +2,7 @@
  * Componente GalleryGrid - Grid de fotos
  */
 
-import { Photo } from '../../types/model.types';
+import type { Photo } from '../../types/model.types';
 
 interface GalleryGridProps {
   photos: Photo[];

@@ -72,6 +72,8 @@ export const Header = () => {
                 width: '100%',
                 height: '100%',
                 objectFit: 'cover',
+                objectPosition: 'center 0%',
+                transform: 'scale(1.3)',
               }}
               onError={(e) => {
                 // Fallback si no hay imagen
@@ -265,7 +267,7 @@ export const Header = () => {
           </button>
 
           {/* Botón menú móvil */}
-          <button
+          {/* <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Menú"
             style={{
@@ -300,7 +302,7 @@ export const Header = () => {
               borderRadius: '2px',
               transition: 'all 0.3s',
             }}></span>
-          </button>
+          </button> */}
         </div>
       </div>
 
