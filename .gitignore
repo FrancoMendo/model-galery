@@ -46,3 +46,7 @@ build
 *.bak
 *.swp
 *~
+
+# Image originals (backups)
+public/images/models/originals/
+**/originals/

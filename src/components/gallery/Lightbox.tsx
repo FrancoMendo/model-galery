@@ -302,7 +302,7 @@ export const Lightbox = ({
         />
       </div>
 
-      {/* Información de la foto */}
+      {/* Información de la foto y controles */}
       <div
         style={{
           position: 'absolute',
@@ -312,7 +312,7 @@ export const Lightbox = ({
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          gap: '12px',
+          gap: '16px',
           zIndex: 10001,
         }}
       >
@@ -332,22 +332,124 @@ export const Lightbox = ({
           </div>
         )}
         
-        {/* Indicador de arrastre */}
-        {/* <div
+        {/* Botones de navegación */}
+        <div
           style={{
-            color: 'rgba(255, 255, 255, 0.5)',
-            fontSize: '13px',
+            display: 'flex',
+            gap: '12px',
+            alignItems: 'center',
+          }}
+        >
+          {/* Botón Anterior */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setDirection('right');
+              onPrevious();
+            }}
+            disabled={photos.length <= 1}
+            style={{
+              background: photos.length <= 1 ? 'rgba(255, 255, 255, 0.1)' : 'rgba(255, 255, 255, 0.15)',
+              border: '1px solid rgba(255, 255, 255, 0.3)',
+              color: 'white',
+              fontSize: '20px',
+              width: '48px',
+              height: '48px',
+              borderRadius: '50%',
+              cursor: photos.length <= 1 ? 'not-allowed' : 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              transition: 'all 0.3s',
+              opacity: photos.length <= 1 ? 0.5 : 1,
+            }}
+            onMouseEnter={(e) => {
+              if (photos.length > 1) {
+                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.25)';
+                e.currentTarget.style.transform = 'scale(1.05)';
+              }
+            }}
+            onMouseLeave={(e) => {
+              if (photos.length > 1) {
+                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.15)';
+                e.currentTarget.style.transform = 'scale(1)';
+              }
+            }}
+            aria-label="Foto anterior"
+          >
+            ←
+          </button>
+
+          {/* Indicador de página */}
+          <div
+            style={{
+              color: 'rgba(255, 255, 255, 0.9)',
+              fontSize: '14px',
+              fontWeight: '600',
+              minWidth: '60px',
+              textAlign: 'center',
+              backgroundColor: 'rgba(0, 0, 0, 0.5)',
+              padding: '8px 16px',
+              borderRadius: '20px',
+            }}
+          >
+            {currentIndex + 1} / {photos.length}
+          </div>
+
+          {/* Botón Siguiente */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setDirection('left');
+              onNext();
+            }}
+            disabled={photos.length <= 1}
+            style={{
+              background: photos.length <= 1 ? 'rgba(255, 255, 255, 0.1)' : 'rgba(255, 255, 255, 0.15)',
+              border: '1px solid rgba(255, 255, 255, 0.3)',
+              color: 'white',
+              fontSize: '20px',
+              width: '48px',
+              height: '48px',
+              borderRadius: '50%',
+              cursor: photos.length <= 1 ? 'not-allowed' : 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              transition: 'all 0.3s',
+              opacity: photos.length <= 1 ? 0.5 : 1,
+            }}
+            onMouseEnter={(e) => {
+              if (photos.length > 1) {
+                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.25)';
+                e.currentTarget.style.transform = 'scale(1.05)';
+              }
+            }}
+            onMouseLeave={(e) => {
+              if (photos.length > 1) {
+                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.15)';
+                e.currentTarget.style.transform = 'scale(1)';
+              }
+            }}
+            aria-label="Foto siguiente"
+          >
+            →
+          </button>
+        </div>
+        
+        {/* Hint de navegación */}
+        <div
+          style={{
+            color: 'rgba(255, 255, 255, 0.4)',
+            fontSize: '12px',
             textAlign: 'center',
             display: 'flex',
             alignItems: 'center',
-            gap: '8px',
-            backgroundColor: 'rgba(0, 0, 0, 0.3)',
-            padding: '8px 16px',
-            borderRadius: '16px',
+            gap: '6px',
           }}
         >
-          <span>👆 Arrastra ←→</span>
-        </div> */}
+          <span>Arrastra, o usa ←→ los botones</span>
+        </div>
       </div>
     </div>
   );
