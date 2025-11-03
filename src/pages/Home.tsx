@@ -49,19 +49,6 @@ export const Home = () => {
             alignItems: "center",
           }}
         ></div>
-
-        {/* Contador de resultados */}
-        <div
-          style={{
-            marginBottom: "24px",
-            fontSize: "16px",
-            color: "#707066",
-          }}
-        >
-          {filteredProductions.length}{" "}
-          {filteredProductions.length === 1 ? "producción" : "producciones"}
-        </div>
-
         {/* Grid de producciones */}
         {filteredProductions.length > 0 ? (
           <div

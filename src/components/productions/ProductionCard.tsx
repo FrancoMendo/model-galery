@@ -166,12 +166,12 @@ export const ProductionCard = ({ production, onClick }: ProductionCardProps) => 
             </div>
           )}
 
-          {production.photographer && (
+         {/*  {production.photographer && (
             <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
               <span>📷</span>
               <span>{production.photographer}</span>
             </div>
-          )}
+          )} */}
         </div>
       </div>
     </div>
