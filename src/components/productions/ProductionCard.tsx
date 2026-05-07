@@ -10,8 +10,9 @@ interface ProductionCardProps {
 }
 
 export const ProductionCard = ({ production, onClick }: ProductionCardProps) => {
-  const formatDate = (date: Date) => {
-    return date.toLocaleDateString('es-ES', { 
+  const formatDate = (date: Date | string | number) => {
+    const d = new Date(date);
+    return d.toLocaleDateString('es-ES', { 
       year: 'numeric', 
       month: 'long', 
       day: 'numeric' 
@@ -83,7 +84,7 @@ export const ProductionCard = ({ production, onClick }: ProductionCardProps) => 
           }}
         >
           <span>📸</span>
-          <span>{production.photos.length}</span>
+          <span>{production.photos?.length || 0}</span>
         </div>
 
         {/* Categoría */}

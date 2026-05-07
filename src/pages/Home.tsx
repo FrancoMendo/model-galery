@@ -4,19 +4,41 @@
 
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import type { Production } from "../types/production.types";
-import { getAllProductions } from "../data/productions.data";
 import ProductionCard from "../components/productions/ProductionCard";
 import Header from "../components/layout/Header";
 
+const API_URL = "https://api-model-gallery-production.francomendodev.workers.dev";
+
 export const Home = () => {
   const navigate = useNavigate();
-  const [productions, setProductions] = useState<Production[]>([]);
+  const [productions, setProductions] = useState<any[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const allProductions = getAllProductions();
-    setProductions(allProductions);
+    const fetchProductions = async () => {
+      try {
+        const res = await fetch(`${API_URL}/productions`);
+        const data = await res.json();
+
+        // Mapear los datos de la API para asegurar que la imagen tenga la URL completa
+        const mappedProductions = (data.productions || []).map((p: any) => ({
+          ...p,
+          category: p.category || "General", // Fallback por si no tienes categoría en BD
+          coverImage: p.coverImage
+            ? `${API_URL}${p.coverImage}`
+            : "https://via.placeholder.com/400x600?text=Sin+Imagen",
+        }));
+
+        setProductions(mappedProductions);
+      } catch (error) {
+        console.error("Error al obtener producciones:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchProductions();
   }, []);
 
   // Obtener categorías únicas
