@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import ProductionCard from "../components/productions/ProductionCard";
 import Header from "../components/layout/Header";
 
-const API_URL = "https://api-model-gallery-production.francomendodev.workers.dev";
+const API_URL = import.meta.env.VITE_API_URL || "https://api-model-gallery-production.francomendodev.workers.dev";
 
 export const Home = () => {
   const navigate = useNavigate();
