@@ -7,7 +7,7 @@ export const Footer = () => {
 
   return (
     <footer className="footer">
-      <div className="footer-content">
+      {/*      <div className="footer-content">
         <div className="footer-section">
           <h3>Model Gallery</h3>
           <p>Agencia de modelos y actrices profesionales</p>
@@ -26,14 +26,13 @@ export const Footer = () => {
         <div className="footer-section">
           <h4>Síguenos</h4>
           <div className="social-links">
-            {/* Iconos de redes sociales */}
             <a href="#" aria-label="Instagram">Instagram</a>
             <a href="#" aria-label="Facebook">Facebook</a>
             <a href="#" aria-label="Twitter">Twitter</a>
           </div>
         </div>
       </div>
-      
+       */}
       <div className="footer-bottom">
         <p>&copy; {currentYear} Model Gallery. Todos los derechos reservados.</p>
       </div>

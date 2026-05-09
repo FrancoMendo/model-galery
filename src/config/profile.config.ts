@@ -6,7 +6,6 @@ export const profileConfig = {
   name: 'Magalí Matas',
   photo: '/images/models/user_avatar.JPG',
   role: 'Modelo & Actriz Profesional',
-  
   social: {
     instagram: {
       url: 'https://www.instagram.com/magalimatas/',

@@ -2,40 +2,42 @@
  * Página Acerca - Información sobre el modelo/actriz
  */
 
+import { useEffect, useState, type JSXElementConstructor, type Key, type ReactElement, type ReactNode, type ReactPortal } from 'react';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
 import { profileConfig } from '../config/profile.config';
+import apiClient from '../services/api';
 
 export const About = () => {
-  const skills = [
-    'Moda Editorial',
-    'Pasarela',
-    'Publicidad Comercial',
-    'Fotografía de Producto',
-    'Actuación',
-    'Expresión Corporal',
-  ];
+  const [aboutMeData, setAboutMeData] = useState<any>(null);
 
-  const experience = [
-    {
-      year: '2024',
-      title: 'Campaña Internacional',
-      description: 'Participación en campaña para marca de moda europea.',
-    },
-    {
-      year: '2023',
-      title: 'Fashion Week',
-      description: 'Desfile en semana de la moda local y regional.',
-    },
-    {
-      year: '2022',
-      title: 'Actuación Teatral',
-      description: 'Obra de teatro "Nombre de la Obra" - Teatro Principal.',
-    },
-  ];
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const encodedEmail = encodeURIComponent(profileConfig.social.email.address);
+        const data = await apiClient.get<{ profile: { aboutMe: any } }>(`/users/profile?email=${encodedEmail}`);
+        if (data?.profile?.aboutMe) {
+          // Si el JSON es string (por si acaso), lo parseamos
+          const parsed = typeof data.profile.aboutMe === 'string'
+            ? JSON.parse(data.profile.aboutMe)
+            : data.profile.aboutMe;
+          setAboutMeData(parsed);
+        }
+      } catch (error) {
+        console.error('Error fetching profile:', error);
+      }
+    };
+    fetchProfile();
+  }, []);
+
+  const skills = aboutMeData?.skills;
+
+  const experience = aboutMeData?.experience;
+
+  const currentBio = aboutMeData?.bio || profileConfig.bio;
 
   return (
-    <div style={{ 
+    <div style={{
       minHeight: '100vh',
       backgroundColor: '#f8f9f7',
     }}>
@@ -64,7 +66,7 @@ export const About = () => {
             border: '4px solid #467e03',
             marginBottom: '24px',
           }}>
-            <img 
+            <img
               src={profileConfig.photo}
               alt={profileConfig.name}
               style={{
@@ -110,13 +112,13 @@ export const About = () => {
             lineHeight: '1.8',
             maxWidth: '700px',
           }}>
-            {profileConfig.bio}
+            {currentBio}
           </p>
         </div>
       </section>
 
       {/* Habilidades y Especialidades */}
-      <section style={{
+      {skills?.length > 0 && <section style={{
         padding: '60px 20px',
         backgroundColor: 'white',
       }}>
@@ -139,7 +141,7 @@ export const About = () => {
             gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
             gap: '20px',
           }}>
-            {skills.map((skill, index) => (
+            {skills?.map((skill: string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<string | number | bigint | boolean | ReactPortal | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | null | undefined> | null | undefined, index: Key | null | undefined) => (
               <div
                 key={index}
                 style={{
@@ -181,10 +183,10 @@ export const About = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section>}
 
       {/* Experiencia */}
-      <section style={{
+      {experience?.length > 0 && <section style={{
         padding: '60px 20px',
         backgroundColor: '#f8f9f7',
       }}>
@@ -207,7 +209,7 @@ export const About = () => {
             flexDirection: 'column',
             gap: '24px',
           }}>
-            {experience.map((item, index) => (
+            {experience?.map((item: { year: any; title: any; description: any }, index: any) => (
               <div
                 key={index}
                 style={{
@@ -253,7 +255,7 @@ export const About = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section>}
 
       {/* Redes Sociales */}
       <section style={{
@@ -306,12 +308,12 @@ export const About = () => {
                 e.currentTarget.style.transform = 'translateY(0)';
               }}
             >
-              <svg 
-                width="32" 
-                height="32" 
-                viewBox="0 0 24 24" 
-                fill="none" 
-                stroke="currentColor" 
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
                 strokeWidth="2"
                 style={{ color: '#467e03' }}
               >
