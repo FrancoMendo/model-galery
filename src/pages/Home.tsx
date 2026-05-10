@@ -16,10 +16,16 @@ export const Home = () => {
   // Obtener categorías únicas
   const categories = ["all", ...Array.from(new Set(productions.map((p: any) => p.category)))];
 
-  // Filtrar producciones por categoría
-  const filteredProductions = productions.filter((prod: any) => {
-    return selectedCategory === "all" || prod.category === selectedCategory;
-  });
+  // Filtrar y ordenar producciones (más nuevas primero)
+  const filteredProductions = productions
+    .filter((prod: any) => {
+      return selectedCategory === "all" || prod.category === selectedCategory;
+    })
+    .sort((a: any, b: any) => {
+      const dateA = new Date(a.date || a.createdAt || 0).getTime();
+      const dateB = new Date(b.date || b.createdAt || 0).getTime();
+      return dateB - dateA;
+    });
 
   const handleProductionClick = (production: any) => {
     navigate(`/production/${production.id}`, { state: { production } });
